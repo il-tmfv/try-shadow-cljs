@@ -1,17 +1,23 @@
 (ns my.app
-  (:require [reagent.core :as r])
-  (:require ["material-ui/styles/MuiThemeProvider" :default MuiThemeProvider])
-  (:require ["material-ui/styles/getMuiTheme" :default getMuiTheme])
-  (:require ["material-ui/RaisedButton" :default RaisedButton])
-  )
+  (:require [reagent.core :as r]
+            [re-frame.core :as re]
+            [my.subs]
+            [my.events]
+            ["material-ui/styles/MuiThemeProvider" :default MuiThemeProvider]
+            ["material-ui/styles/getMuiTheme" :default getMuiTheme]
+            ["material-ui/RaisedButton" :default RaisedButton]))
 
 (def theme (getMuiTheme))
 
 (defn app []
-  [:> MuiThemeProvider {:muiTheme theme}
-    [:> RaisedButton
-     {:on-click #(js/alert "Clicked!") :label "Test button!" :primary true}]]
-  )
+  (let [click-counter (re/subscribe [:click-counter])]
+    [:> MuiThemeProvider {:muiTheme theme}
+     [:> RaisedButton
+      {:on-click #(re/dispatch [:click-event 7])
+       :label @click-counter
+       :primary true}]]))
+
+(re/dispatch-sync [:init-db])
 
 (r/render [app]
-  (.getElementById js/document "app"))
+          (.getElementById js/document "app"))

@@ -4,3 +4,6 @@ public/js/
 node_modules/
 .DS_Store
 target/
+.lein-repl-history
+.nrepl-port
+try-shadow-cljs.iml
