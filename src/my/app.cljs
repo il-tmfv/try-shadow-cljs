@@ -3,6 +3,7 @@
             [re-frame.core :as re]
             [my.subs]
             [my.events]
+            [my.effects]
             ["material-ui/styles/MuiThemeProvider" :default MuiThemeProvider]
             ["material-ui/styles/getMuiTheme" :default getMuiTheme]
             ["material-ui/RaisedButton" :default RaisedButton]))
