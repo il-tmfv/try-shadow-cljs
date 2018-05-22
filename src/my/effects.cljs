@@ -7,7 +7,7 @@
 (re/reg-cofx
   :read-counter-from-local-storage
   (fn [cofx _]
-    (assoc cofx :local-storage-counter-value (ls/get-item ls-key))))
+    (assoc cofx :local-storage-counter-value (or (ls/get-item ls-key) "0"))))
 
 (re/reg-fx
   :save-counter-to-local-storage
