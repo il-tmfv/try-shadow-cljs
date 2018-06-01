@@ -5,11 +5,11 @@
 (def ls-key "try-shadow-cljs-ls-key")
 
 (re/reg-cofx
-  :read-counter-from-local-storage
-  (fn [cofx _]
-    (assoc cofx :local-storage-counter-value (or (ls/get-item ls-key) "0"))))
+ :read-counter-from-local-storage
+ (fn [cofx _]
+   (assoc cofx :local-storage-counter-value (or (ls/get-item ls-key) "0"))))
 
 (re/reg-fx
-  :save-counter-to-local-storage
-  (fn [val]
-    (ls/set-item! ls-key val)))
+ :save-counter-to-local-storage
+ (fn [val]
+   (ls/set-item! ls-key val)))
