@@ -5,3 +5,8 @@
  :click-counter
  (fn [db _]
    (:counter db)))
+
+(re/reg-sub
+ :current-page
+ (fn [db _]
+   (:current-page db)))

@@ -10,6 +10,13 @@
          init-value (:local-storage-counter-value cofx)]
      {:db (assoc-in db [:counter] (str init-value))})))
 
+(re/reg-event-db
+ :navigate
+ [check-db-interceptor]
+ (fn [db event]
+   (let [page (second event)]
+     (assoc db :current-page page))))
+
 (re/reg-event-fx
  :click-event
  [check-db-interceptor]
